@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="horizontal">
 
     <com.qfxl.marqueeview.MarqueeView
         android:id="@+id/mqv_main"
@@ -16,46 +16,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:mv_direction="top_to_bottom" />
 
-    <com.qfxl.marqueeview.MarqueeView
-        android:id="@+id/mqv_main2"
-        android:layout_width="200dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:background="#e8e8e8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mqv_main"
-        app:mv_direction="right_to_left" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/sp_marquee_round"
-        android:orientation="horizontal"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mqv_main2">
-
-        <Space
-            android:layout_width="20dp"
-            android:layout_height="match_parent" />
-
-        <android.support.v7.widget.AppCompatImageView
-            android:layout_width="25dp"
-            android:layout_height="match_parent"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_hot" />
-
-        <com.qfxl.marqueeview.MarqueeView
-            android:id="@+id/mqv_main3"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:mv_direction="bottom_to_top" />
-    </LinearLayout>
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
