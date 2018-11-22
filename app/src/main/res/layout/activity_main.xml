@@ -9,11 +9,49 @@
     <com.qfxl.marqueeview.MarqueeView
         android:id="@+id/mqv_main"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/sp_blue_round"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="40dp"
+        android:background="#e8e8e8"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:mv_direction="bottom_to_top" />
+
+    <com.qfxl.marqueeview.MarqueeView
+        android:id="@+id/mqv_main2"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="24dp"
+        android:background="#e8e8e8"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mqv_main"
+        app:mv_direction="right_to_left" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/sp_marquee_round"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mqv_main2">
+
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="match_parent" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_hot" />
+
+        <com.qfxl.marqueeview.MarqueeView
+            android:id="@+id/mqv_main3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:mv_direction="bottom_to_top" />
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

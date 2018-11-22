@@ -1,16 +1,14 @@
 package com.qfxl.marquee;
 
-import android.content.Context;
-import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Pair;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.qfxl.marqueeview.BaseMarqueeAdapter;
+import com.qfxl.marquee.adapter.FirstAdapter;
+import com.qfxl.marquee.adapter.SecondAdapter;
+import com.qfxl.marquee.adapter.ThirdAdapter;
 import com.qfxl.marqueeview.MarqueeView;
 
 import java.util.ArrayList;
@@ -22,45 +20,55 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        MarqueeView marqueeView = findViewById(R.id.mqv_main);
-
-        final List<AdvEntity> list = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            AdvEntity entity = new AdvEntity();
-            entity.setContent("Item" + i);
-            list.add(entity);
-        }
-        marqueeView.setOnItemClickListener(new MarqueeView.OnItemClickListener() {
+        //first
+        MarqueeView marqueeView1 = findViewById(R.id.mqv_main);
+        final List<String> list = new ArrayList<>();
+        list.add("床前明月光");
+        list.add("疑似地上霜");
+        list.add("举头望明月");
+        list.add("低头思故乡");
+        marqueeView1.setOnItemClickListener(new MarqueeView.OnItemClickListener() {
             @Override
             public void onItemClick(int position, View view) {
-                Toast.makeText(MainActivity.this, "click position = " + position + "内容 = " + list.get(position), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "click position = " + position + "content = " + list.get(position), Toast.LENGTH_SHORT).show();
             }
         });
-        marqueeView.setAdapter(new SimpleAdapter(list));
+        marqueeView1.setAdapter(new FirstAdapter(list));
+        marqueeView1.start();
 
-        marqueeView.start();
+
+        //second
+        MarqueeView marqueeView2 = findViewById(R.id.mqv_main2);
+        final List<Pair<String, String>> list2 = new ArrayList<>();
+        list2.add(Pair.create("窗前明月光", "疑似地上霜"));
+        list2.add(Pair.create("举头望明月", "低头思故乡"));
+        marqueeView2.setOnItemClickListener(new MarqueeView.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position, View view) {
+                Toast.makeText(MainActivity.this, "click position = " + position + "content = " + list.get(position), Toast.LENGTH_SHORT).show();
+            }
+        });
+        marqueeView2.setAdapter(new SecondAdapter(list2));
+        marqueeView2.start();
+
+        //third
+        MarqueeView marqueeView3 = findViewById(R.id.mqv_main3);
+        final List<AdvEntity> advEntityList = new ArrayList<>();
+        AdvEntity entity1 = new AdvEntity( "299.99", "199.00","羽绒服xxx，恰逢双十一，低价售卖温暖，一年仅有的一次。降温抵不过降价，与这个秋冬的约会，你还差几件衣服？");
+        AdvEntity entity2 = new AdvEntity( "1199.99", "699.00","毛呢大衣xxx，恰逢双十二，低价售卖温暖，一年仅有的一次。降温抵不过降价，与这个秋冬的约会，你还差几件衣服？");
+        AdvEntity entity3 = new AdvEntity( "99.00", "9.90","袜子大促销，降温抵不过降价，与这个秋冬的约会，你还差几件衣服？");
+
+        advEntityList.add(entity1);
+        advEntityList.add(entity2);
+        advEntityList.add(entity3);
+        marqueeView3.setOnItemClickListener(new MarqueeView.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position, View view) {
+                Toast.makeText(MainActivity.this, advEntityList.get(position).getContent(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        marqueeView3.setAdapter(new ThirdAdapter(advEntityList));
+        marqueeView3.start();
     }
 
-    class SimpleAdapter extends BaseMarqueeAdapter {
-
-        private List<AdvEntity> list;
-
-        public SimpleAdapter(List<AdvEntity> list) {
-            this.list = list;
-        }
-
-        @Override
-        public View getView(int position, Context context, ViewGroup parent) {
-            TextView defaultView = new TextView(context);
-            defaultView.setText(list.get(position).getContent());
-            defaultView.setTextColor(Color.WHITE);
-            defaultView.setGravity(Gravity.CENTER);
-            return defaultView;
-        }
-
-        @Override
-        public int getCount() {
-            return list.size();
-        }
-    }
 }

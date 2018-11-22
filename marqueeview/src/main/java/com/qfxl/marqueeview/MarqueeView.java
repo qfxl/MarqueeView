@@ -1,14 +1,12 @@
 package com.qfxl.marqueeview;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ViewFlipper;
-
-import java.util.List;
 
 /**
  * <pre>
@@ -27,9 +25,20 @@ public class MarqueeView extends ViewFlipper {
     private BaseMarqueeAdapter mAdapter;
 
     /**
-     * Item点击监听
+     * item点击监听
      */
     private OnItemClickListener mOnItemClickListener;
+    /**
+     * 默认的滚动方向
+     */
+    private Direction mDirection;
+
+    private final Direction[] directions = {
+            Direction.LEFT_TO_RIGHT,
+            Direction.TOP_TO_BOTTOM,
+            Direction.RIGHT_TO_LEFT,
+            Direction.BOTTOM_TO_TOP
+    };
 
     public MarqueeView(Context context) {
         this(context, null);
@@ -37,19 +46,35 @@ public class MarqueeView extends ViewFlipper {
 
     public MarqueeView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        Animation in = AnimationUtils.loadAnimation(getContext(), R.anim.anim_bottom_in);
-        Animation out = AnimationUtils.loadAnimation(getContext(), R.anim.anim_top_out);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.MarqueeView);
+        Animation in = getInAnimation();
+        Animation out = getOutAnimation();
+        if (in == null || out == null) {
+            int directionIndex = a.getInt(R.styleable.MarqueeView_mv_direction, 0);
+            mDirection = directions[directionIndex];
+            switch (mDirection) {
+                default:
+                case LEFT_TO_RIGHT:
+                    in = AnimationUtils.loadAnimation(getContext(), R.anim.anim_left_in);
+                    out = AnimationUtils.loadAnimation(getContext(), R.anim.anim_right_out);
+                    break;
+                case TOP_TO_BOTTOM:
+                    in = AnimationUtils.loadAnimation(getContext(), R.anim.anim_top_in);
+                    out = AnimationUtils.loadAnimation(getContext(), R.anim.anim_bottom_out);
+                    break;
+                case RIGHT_TO_LEFT:
+                    in = AnimationUtils.loadAnimation(getContext(), R.anim.anim_right_in);
+                    out = AnimationUtils.loadAnimation(getContext(), R.anim.anim_left_out);
+                    break;
+                case BOTTOM_TO_TOP:
+                    in = AnimationUtils.loadAnimation(getContext(), R.anim.anim_bottom_in);
+                    out = AnimationUtils.loadAnimation(getContext(), R.anim.anim_top_out);
+                    break;
+            }
+        }
+        a.recycle();
         setInAnimation(in);
         setOutAnimation(out);
-    }
-
-    /**
-     * 直接设置文本
-     *
-     * @param texts
-     */
-    public void setTexts(List<String> texts) {
-
     }
 
     /**
@@ -104,8 +129,8 @@ public class MarqueeView extends ViewFlipper {
      */
     private void generateView() {
         removeAllViews();
-        int childCount = mAdapter.getCount();
-        for (int i = 0; i < childCount; i++) {
+        int adapterCount = mAdapter.getCount();
+        for (int i = 0; i < adapterCount; i++) {
             final int position = i;
             View childView = mAdapter.getView(position, getContext(), this);
             childView.setOnClickListener(new OnClickListener() {
@@ -126,6 +151,29 @@ public class MarqueeView extends ViewFlipper {
 
     public void stop() {
         stopFlipping();
+    }
+
+    public enum Direction {
+        /**
+         * left -> right
+         */
+        LEFT_TO_RIGHT(0),
+        /**
+         * top -> bottom
+         */
+        TOP_TO_BOTTOM(1),
+        /**
+         * right -> left
+         */
+        RIGHT_TO_LEFT(2),
+        /**
+         * bottom -> top
+         */
+        BOTTOM_TO_TOP(3);
+
+        Direction(int i) {
+
+        }
     }
 
     public interface OnItemClickListener {
