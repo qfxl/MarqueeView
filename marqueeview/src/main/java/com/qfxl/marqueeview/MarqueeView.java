@@ -87,7 +87,7 @@ public class MarqueeView extends ViewFlipper {
             mAdapter = adapter;
             generateView();
         } else {
-            throw new IllegalArgumentException("MarqueeView Adapter is null");
+            throw new IllegalArgumentException("MarqueeView's adapter must not be null!");
         }
     }
 
@@ -124,11 +124,16 @@ public class MarqueeView extends ViewFlipper {
         }
     }
 
+    public OnItemClickListener getOnItemClickListener() {
+        return mOnItemClickListener;
+    }
+
     /**
      * 生成View
      */
     private void generateView() {
         removeAllViews();
+        LayoutParams childLp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         int adapterCount = mAdapter.getCount();
         for (int i = 0; i < adapterCount; i++) {
             final int position = i;
@@ -141,7 +146,7 @@ public class MarqueeView extends ViewFlipper {
                     }
                 }
             });
-            addView(childView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+            addView(childView, childLp);
         }
     }
 

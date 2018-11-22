@@ -53,6 +53,7 @@ public class ThirdAdapter extends BaseMarqueeAdapter {
             adContentTv = itemView.findViewById(R.id.tv_ad_content);
             adPriceTv = itemView.findViewById(R.id.tv_ad_price);
             adPromotionalTv = itemView.findViewById(R.id.tv_ad_promotional_price);
+            adContentTv.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
             adPriceTv.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         }
     }
