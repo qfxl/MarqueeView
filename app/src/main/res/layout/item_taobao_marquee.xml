@@ -10,7 +10,7 @@
         android:layout_gravity="center_vertical"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:background="@drawable/bg_adv_item"
+        android:background="@drawable/sp_taobao_marquee_item_bg"
         android:ellipsize="end"
         android:gravity="center"
         android:lines="1"

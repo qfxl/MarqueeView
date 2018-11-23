@@ -16,4 +16,61 @@
         app:layout_constraintTop_toTopOf="parent"
         app:mv_direction="top_to_bottom" />
 
+    <com.qfxl.marqueeview.MarqueeView
+        android:id="@+id/mqv_main2"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:background="#e8e8e8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mqv_main"
+        app:mv_direction="right_to_left" />
+
+    <LinearLayout
+        android:id="@+id/ll_main"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/sp_marquee_round_bg"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mqv_main2">
+
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="match_parent" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="25dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_hot" />
+
+        <com.qfxl.marqueeview.MarqueeView
+            android:id="@+id/mqv_main3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:mv_direction="bottom_to_top" />
+    </LinearLayout>
+
+    <com.qfxl.marqueeview.MarqueeView
+        android:id="@+id/mqv_taobao"
+        android:layout_width="260dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:background="#e8e8e8"
+        android:flipInterval="3000"
+        android:inAnimation="@anim/anim_bottom_in"
+        android:outAnimation="@anim/anim_top_out"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_main" />
 </android.support.constraint.ConstraintLayout>

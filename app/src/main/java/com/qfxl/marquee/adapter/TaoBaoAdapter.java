@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.qfxl.marquee.R;
-import com.qfxl.marquee.entity.AdvEntity;
+import com.qfxl.marquee.entity.TaoBaoEntity;
 import com.qfxl.marqueeview.BaseMarqueeAdapter;
 
 import java.util.List;
@@ -21,16 +21,16 @@ import java.util.List;
  *     version: 1.0
  * </pre>
  */
-public class MyAdapter extends BaseMarqueeAdapter {
-    private List<AdvEntity> mList;
+public class TaoBaoAdapter extends BaseMarqueeAdapter {
+    private List<TaoBaoEntity> mList;
 
-    public MyAdapter(List<AdvEntity> list) {
+    public TaoBaoAdapter(List<TaoBaoEntity> list) {
         mList = list;
     }
 
     @Override
     public View getView(int position, Context context, ViewGroup parent) {
-        View itemView = LayoutInflater.from(context).inflate(R.layout.item_marquee, null);
+        View itemView = LayoutInflater.from(context).inflate(R.layout.item_taobao_marquee, null);
         ViewHolder holder = new ViewHolder(itemView);
         holder.tv_title.setText(mList.get(position).getTitle());
         holder.tv_content.setText(mList.get(position).getContent());
