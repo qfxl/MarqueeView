@@ -13,7 +13,7 @@ implementation 'com.qfxl:marqueeview:1.0.0'
 
 ## 自定义属性
 
-MarqueeView继承自ViewFliper，所以ViewFliper的自定义属性全部支持。
+MarqueeView继承自ViewFlipper，所以ViewFlipper的自定义属性全部支持。
 
 |Attribute|Description|类型|默认值|
 |:-:|:-:|:-:|:-:|
