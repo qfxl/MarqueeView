@@ -32,8 +32,8 @@ public class TaoBaoAdapter extends BaseMarqueeAdapter {
     public View getView(int position, Context context, ViewGroup parent) {
         View itemView = LayoutInflater.from(context).inflate(R.layout.item_taobao_marquee, null);
         ViewHolder holder = new ViewHolder(itemView);
-        holder.tv_title.setText(mList.get(position).getTitle());
-        holder.tv_content.setText(mList.get(position).getContent());
+        holder.tvTitle.setText(mList.get(position).getTitle());
+        holder.tvContent.setText(mList.get(position).getContent());
         return itemView;
     }
 
@@ -43,12 +43,12 @@ public class TaoBaoAdapter extends BaseMarqueeAdapter {
     }
 
     class ViewHolder {
-        public TextView tv_title;
-        public TextView tv_content;
+        TextView tvTitle;
+        TextView tvContent;
 
-        public ViewHolder(View itemView) {
-            tv_title = itemView.findViewById(R.id.tv_title);
-            tv_content = itemView.findViewById(R.id.tv_content);
+        ViewHolder(View itemView) {
+            tvTitle = itemView.findViewById(R.id.tv_title);
+            tvContent = itemView.findViewById(R.id.tv_content);
         }
     }
 }

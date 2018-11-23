@@ -45,11 +45,11 @@ public class ThirdAdapter extends BaseMarqueeAdapter {
     }
 
     class ViewHolder {
-        public TextView adContentTv;
-        public TextView adPriceTv;
-        public TextView adPromotionalTv;
+        TextView adContentTv;
+        TextView adPriceTv;
+        TextView adPromotionalTv;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             adContentTv = itemView.findViewById(R.id.tv_ad_content);
             adPriceTv = itemView.findViewById(R.id.tv_ad_price);
             adPromotionalTv = itemView.findViewById(R.id.tv_ad_promotional_price);
