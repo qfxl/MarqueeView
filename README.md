@@ -16,7 +16,7 @@ allprojects {
 }
 
 dependencies {
-    implementation 'com.github.qfxl:MarqueeView:Tag'
+    implementation 'com.github.qfxl:MarqueeView:1.0.0'
 }
 ```
 
