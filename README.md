@@ -8,7 +8,16 @@
 ## Gradle
 
 ```groovy
-implementation 'com.qfxl:marqueeview:1.0.0'
+allprojects {
+    repositories {
+		...
+		maven { url 'https://jitpack.io' }
+	}
+}
+
+dependencies {
+    implementation 'com.github.qfxl:MarqueeView:Tag'
+}
 ```
 
 ## 自定义属性
